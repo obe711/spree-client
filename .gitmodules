@@ -1,0 +1,3 @@
+[submodule "GoogleMapReact"]
+	path = GoogleMapReact
+	url = ./src/_components/custom/GoogleMapReact
