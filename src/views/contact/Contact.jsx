@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import NavBarPublic from "../../_components/page/NavBarPublic";
 import Footer from "../../_components/page/Footer";
 import GoogleMapApi from "../../_components/custom/GoogleMapApi";
@@ -7,11 +7,30 @@ import spinCard1Img from "../../assets/spree/img/spinSide1.jpg";
 import spinCard2Img from "../../assets/spree/img/spinSide2.jpg";
 import config from "config";
 import { Link } from "react-router-dom";
+import { contactService } from "@/_services";
+import { history } from "@/_helpers";
 
 const Contact = () => {
+  const nameRef = useRef();
+  const phoneRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    contactService.saveMessage({
+      name: nameRef.current.value,
+      phone: phoneRef.current.value,
+      email: emailRef.current.value,
+      message: messageRef.current.value,
+    });
+    window.scrollTo(0, 0);
+    history.push("/");
+  }
+
   return (
     <body className="sidebar-collapse">
-      <div class="contact-page">
+      <div className="contact-page">
         <NavBarPublic solidNav={true} />
         <GoogleMapApi
           latLng={latLng}
@@ -19,77 +38,89 @@ const Contact = () => {
           mapOptions={mapOptions}
           className="big-map"
         />
-        <div class="main main-raised">
-          <div class="contact-content">
-            <div class="container">
-              <h2 class="title">Send us a message</h2>
-              <div class="row">
-                <div class="col-md-6">
-                  <p class="description">
+        <div className="main main-raised">
+          <div className="contact-content">
+            <div className="container">
+              <h2 className="title">Send us a message</h2>
+              <div className="row">
+                <div className="col-md-6">
+                  <p className="description">
                     For information regarding the Spree Programs, please
                     complete and send the form below. We will contact you within
                     24 hours
                     <br />
                     <br />
                   </p>
-                  <form id="contact-form" method="post">
-                    <div class="form-group">
-                      <label for="name" class="bmd-label-floating">
+                  <form id="contact-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <label for="name" className="bmd-label-floating">
                         Your name
                       </label>
-                      <input type="text" class="form-control" id="name" />
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        ref={nameRef}
+                      />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <label
                         for="exampleInputEmails"
-                        class="bmd-label-floating"
+                        className="bmd-label-floating"
                       >
                         Email address
                       </label>
                       <input
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         id="exampleInputEmails"
+                        ref={emailRef}
                       />
-                      <span class="bmd-help">
+                      <span className="bmd-help">
                         We'll never share your email with anyone else.
                       </span>
                     </div>
-                    <div class="form-group">
-                      <label for="phone" class="bmd-label-floating">
+                    <div className="form-group">
+                      <label for="phone" className="bmd-label-floating">
                         Phone
                       </label>
-                      <input type="text" class="form-control" id="phone" />
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="phone"
+                        ref={phoneRef}
+                      />
                     </div>
-                    <div class="form-group label-floating">
+                    <div className="form-group label-floating">
                       <label
-                        class="form-control-label bmd-label-floating"
+                        className="form-control-label bmd-label-floating"
                         for="message"
                       >
                         Your message
                       </label>
                       <textarea
-                        class="form-control"
+                        className="form-control"
                         rows="6"
                         id="message"
+                        ref={messageRef}
                       ></textarea>
                     </div>
-                    <div class="submit text-center">
+                    <div className="submit text-center">
                       <input
                         type="submit"
-                        class="btn btn-primary btn-raised btn-round"
+                        className="btn btn-primary btn-raised btn-round"
                         value="Contact Us"
                       />
                     </div>
                   </form>
                 </div>
-                <div class="col-md-4 ml-auto">
-                  <div class="info info-horizontal">
-                    <div class="icon icon-primary">
-                      <i class="material-icons">phone</i>
+                <div className="col-md-4 ml-auto">
+                  <div className="info info-horizontal">
+                    <div className="icon icon-primary">
+                      <i className="material-icons">phone</i>
                     </div>
-                    <div class="description">
-                      <h4 class="info-title">Give us a ring</h4>
+                    <div className="description">
+                      <h4 className="info-title">Give us a ring</h4>
                       <p>
                         Spree Programs <br />
                         spreegym@gmail.com <br />
@@ -98,39 +129,41 @@ const Contact = () => {
                       </p>
                     </div>
                   </div>
-                  <div class="rotating-card-container">
-                    <div class="card card-rotate card-background">
+                  <div className="rotating-card-container">
+                    <div className="card card-rotate card-background">
                       <div
-                        class="front front-background"
+                        className="front front-background"
                         style={{ backgroundImage: `url('${spinCard1Img}')` }}
                       >
-                        <div class="card-body">
-                          <h6 class="card-category">Don’t Miss Out!</h6>
+                        <div className="card-body">
+                          <h6 className="card-category">Don’t Miss Out!</h6>
                           <a href="#pablo">
-                            <h3 class="card-title">Registration Now Open</h3>
+                            <h3 className="card-title">
+                              Registration Now Open
+                            </h3>
                           </a>
-                          <h4 class="card-description title">
-                            Classes start soon and team size is limited so
+                          <h4 className="card-description title">
+                            classes start soon and team size is limited so
                             register now for this upcoming season.
                           </h4>
                         </div>
                       </div>
                       <div
-                        class="back back-background"
+                        className="back back-background"
                         style={{ backgroundImage: `url('${spinCard2Img}')` }}
                       >
-                        <div class="card-body">
-                          <h5 class="card-title">Register Here</h5>
-                          <h4 class="card-description title">
+                        <div className="card-body">
+                          <h5 className="card-title">Register Here</h5>
+                          <h4 className="card-description title">
                             Just click here and you will be redirected to the
                             enrollment page.
                           </h4>
-                          <div class="footer text-center">
+                          <div className="footer text-center">
                             <Link
                               to="/enroll"
-                              class="btn btn-rose btn-just-icon btn-fill btn-round btn-wd"
+                              className="btn btn-rose btn-just-icon btn-fill btn-round btn-wd"
                             >
-                              <i class="material-icons">check</i>
+                              <i className="material-icons">check</i>
                             </Link>
                           </div>
                         </div>

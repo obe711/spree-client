@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { accountService } from '@/_services';
+import { accountService } from "@/_services";
 
 const Footer = () => {
   const user = accountService.userValue;
@@ -18,19 +18,25 @@ const Footer = () => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/store">Store</Link>
-            </li>
+            {false && (
+              <li>
+                <Link to="/store">Store</Link>
+              </li>
+            )}
+
             <li>
               <Link to="/enroll">Enroll</Link>
             </li>
-            {user && <li>
-              <Link onClick={accountService.logout} >Logout</Link>
-            </li>}
-            {!user && <li>
-              <Link to="/login">Login</Link>
-            </li>}
-            
+            {user && (
+              <li>
+                <Link onClick={accountService.logout}>Logout</Link>
+              </li>
+            )}
+            {!user && (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            )}
           </ul>
         </nav>
         <div class="copyright float-right">

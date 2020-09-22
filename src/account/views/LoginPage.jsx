@@ -1,75 +1,60 @@
-import React from 'react';
+import React from "react";
 import NavBarPublic from "../../_components/page/NavBarPublic";
 import loginBG from "../../assets/spree/img/loginBG.jpg";
-import {Login} from "../Login";
+import { Login } from "../Login";
+import { Link } from "react-router-dom";
 
 const LoginPage = (props) => {
-    return (  
-        <body>
-           
-        <div
+  return (
+    <body>
+      <div
         className="page-header header-filter"
         style={{
           backgroundImage: `url('${loginBG}')`,
           backgroundSize: "cover",
-          backgroundPosition: "top center"}}>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-                    <Login  {...props}/>
-                    </div>
-                </div>
-
-   
+          backgroundPosition: "top center",
+        }}
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+              <Login {...props} />
             </div>
+          </div>
         </div>
-        <footer class="footer">
-            <div class="container">
-            <nav class="float-left">
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <nav class="float-left">
             <ul>
               <li>
-                <a href="home.html">
-                  Spree Programs
-                </a>
+                <Link to="/">Spree Programs</Link>
               </li>
               <li>
-                <a href="about.html">
-                  About
-                </a>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a href="contact.html">
-                  Contact
-                </a>
+                <Link to="/contact">Contact</Link>
               </li>
               <li>
-                <a href="store.html">
-                  Store
-                </a>
+                <Link to="/store">Store</Link>
               </li>
               <li>
-                <a href="enroll.html">
-                  Enroll
-                </a>
+                <Link to="/enroll">Enroll</Link>
               </li>
             </ul>
           </nav>
           <div class="copyright float-right">
             &copy;
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            , made with <i class="material-icons">favorite</i> by
-            <a href="https://www.spreeprograms.com" target="_blank"
-              >Spree Programs</a
-            >
+            {new Date().getFullYear()}, made with{" "}
+            <i class="material-icons">favorite</i> by
+            <Link to="/"> Spree Programs </Link>
             for a better future.
           </div>
-            </div>
-        </footer>
-        </body>
-    );
-}
- 
+        </div>
+      </footer>
+    </body>
+  );
+};
+
 export default LoginPage;

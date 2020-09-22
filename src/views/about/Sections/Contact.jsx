@@ -1,38 +1,53 @@
 import React, { useRef } from "react";
 import SelectDropDown from "../../../_components/common/SelectDropDown";
 
+import { emailLeadService } from "@/_services";
+import { history } from "@/_helpers";
+
 const Contact = () => {
   const selectRef = useRef();
+  const nameRef = useRef();
+  const emailRef = useRef();
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    emailLeadService.saveLead({
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      item: selectRef.current.value,
+    });
+    window.scrollTo(0, 0);
+    history.push("/");
+  }
   return (
-    <div class="about-contact">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <h2 class="text-center title">Want more information?</h2>
-          <h4 class="text-center description">
+    <div className="about-contact">
+      <div className="row">
+        <div className="col-md-8 ml-auto mr-auto">
+          <h2 className="text-center title">Want more information?</h2>
+          <h4 className="text-center description">
             If you would like more information about Spree Programs please fill
             in your name, email and the program you’re interested in and we will
             be happy to reach out.
           </h4>
-          <form class="contact-form" onSubmit={(e) => e.preventDefault()}>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="name" class="bmd-label-floating">
-                    Your name
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-md-4">
+                <div className="form-group">
+                  <label htmlFor="name" className="bmd-label-floating">
+                    Your Name
                   </label>
-                  <input type="text" class="form-control" />
+                  <input type="text" className="form-control" ref={nameRef} />
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="email" class="bmd-label-floating">
+              <div className="col-md-4">
+                <div className="form-group">
+                  <label htmlFor="email" className="bmd-label-floating">
                     Your Email
                   </label>
-                  <input type="email" class="form-control" />
+                  <input type="email" className="form-control" ref={emailRef} />
                 </div>
               </div>
-              <div class="col-md-4">
+              <div className="col-md-4">
                 <SelectDropDown
                   innerRef={selectRef}
                   options={[
@@ -52,11 +67,12 @@ const Contact = () => {
                 />
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-4 ml-auto mr-auto text-center">
+            <div className="row">
+              <div className="col-md-4 ml-auto mr-auto text-center">
                 <button
-                  class="btn btn-primary btn-round"
-                  onClick={() => console.log(selectRef.current.value)}
+                  className="btn btn-primary btn-round"
+                  //onClick={() => console.log(selectRef.current.value)}
+                  value="submit"
                 >
                   Let&apos;s talk
                 </button>

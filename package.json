@@ -23,6 +23,7 @@
         "react-lazy-hero": "^2.0.0",
         "react-responsive-carousel": "^3.2.9",
         "react-router-dom": "^5.0.0",
+        "react-table-v6": "^6.8.6",
         "redux": "^4.0.5",
         "rxjs": "^6.3.3",
         "sass-loader": "^9.0.3",

@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 
-const SelectDropDown = ({ innerRef, options, label, name }) => {
+const SelectDropDownControlled = ({
+  selectedLabel,
+  selectedValue,
+  innerRef,
+  options,
+  label,
+  name,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openAction, setOpenAction] = useState("");
   const [selectedItem, setSelectedItem] = useState({
-    label: "Select Item",
-    value: "",
+    label: selectedLabel,
+    value: selectedValue,
   });
 
   const handleSelect = () => {
@@ -117,4 +124,4 @@ const SelectDropDown = ({ innerRef, options, label, name }) => {
   );
 };
 
-export default SelectDropDown;
+export default SelectDropDownControlled;
